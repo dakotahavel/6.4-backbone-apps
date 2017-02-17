@@ -11,10 +11,11 @@ var AppRouter = Backbone.Router.extend({
   }
   , initialize: function(){
     this.posts = new models.PostCollection();
+    this.post = new models.Post();
 
   }
   , index: function(){
-    var list = new views.PostListView({collection: this.posts});
+    var list = new views.PostListView({collection: this.posts, model: this.post});
     $('.blog').html(list.render().el)
     this.posts.fetch()
   }
