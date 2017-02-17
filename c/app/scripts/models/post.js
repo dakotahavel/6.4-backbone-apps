@@ -9,8 +9,6 @@ var Post = Backbone.Model.extend({
 var PostCollection = Backbone.Collection.extend({
   model: Post
   , url: 'https://tiny-lasagna-server.herokuapp.com/collections/dakotapost'
-  , initialize: function(){
-  
 
 });
 

@@ -17,6 +17,8 @@ var FormView = Backbone.View.extend({
     var $body = $('#body');
     console.log(this.collection);
     this.collection.create({title: $title.val(), body: $body.val()});
+    $title.val('');
+    $body.val('');
   }
   , render: function(){
     this.$el.html(this.template);
