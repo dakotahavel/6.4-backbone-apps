@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 var $ = require('jquery');
 
 var Post = Backbone.Model.extend({
-  id: '_id'
+  idAttribute: '_id'
 
 });
 

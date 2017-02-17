@@ -6,7 +6,8 @@ var views = require('./views/post');
 
 var AppRouter = Backbone.Router.extend({
   routes: {
-    '': 'index'
+    '': 'index',
+    'detail/:id': 'showDetail'
   }
   , initialize: function(){
     this.posts = new models.PostCollection();
@@ -15,6 +16,12 @@ var AppRouter = Backbone.Router.extend({
   , index: function(){
     var list = new views.PostListView({collection: this.posts});
     $('.blog').html(list.render().el)
+    this.posts.fetch()
+  }
+  , showDetail: function(id){
+    var post = this.posts.findWhere({'_id': id});
+    var detail = new views.PostDetailView({model: post});
+    $('.detail').html(detail.render().el)
     this.posts.fetch()
   }
 
