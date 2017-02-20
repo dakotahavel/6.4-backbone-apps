@@ -22,6 +22,7 @@ var PostItemView = Backbone.View.extend({
   , template: itemTemplate
   , initialize: function(){
     this.listenTo(this.model, 'destroy', this.remove);
+    this.listenTo(this.model, 'change', this.render);
 
   }
   , render: function(){
@@ -43,11 +44,12 @@ var PostItemView = Backbone.View.extend({
   }
   , updatePost: function(e){
     e.preventDefault();
-    
-
+    this.model.set({
+      title: $('#edit-title').val()
+       , body: $('#edit-body').val()
+    });
+    this.model.save();
   }
-
-
 });
 
 module.exports = {

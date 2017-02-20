@@ -16,6 +16,8 @@ var AppRouter = Backbone.Router.extend({
 
     var form = new formView.FormView({collection: this.posts})
     $('.form').html(form.render().el)
+    $('.blog-form').hide();
+
 
     this.posts.fetch();
   }

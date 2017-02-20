@@ -4,12 +4,14 @@ var formTemplate = require('../../templates/form_template.hbs');
 
 var FormView = Backbone.View.extend({
   tagName: 'form'
-
   , template: formTemplate
 
   , className: 'posting-form'
 
-  , events: {'submit' : 'postForm'
+  , events: {
+    'submit ' : 'postForm'
+    , 'click .new-btn' : 'showPostForm'
+
   }
   , postForm: function(e){
     e.preventDefault();
@@ -23,6 +25,9 @@ var FormView = Backbone.View.extend({
   , render: function(){
     this.$el.html(this.template);
     return this;
+  }
+  , showPostForm: function(){
+    $('.blog-form').toggle('show')
   }
 
 });
