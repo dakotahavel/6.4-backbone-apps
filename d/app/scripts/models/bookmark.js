@@ -8,7 +8,7 @@ var Bookmark = Backbone.Model.extend({
 
 var BookmarkCollection = Backbone.Collection.extend({
   model: Bookmark
-  , url: 'http://tiny-lasagna-server.herokuapp.com/collections/dakotabookmark'
+  , url: 'https://tiny-lasagna-server.herokuapp.com/collections/dakotabookmark'
 });
 
 module.exports= {
