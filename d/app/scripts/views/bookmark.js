@@ -1,7 +1,9 @@
 var Backbone = require('backbone');
 var $ = require('jquery');
 
-var formTemplate = require('../../templates/form_template.hbs')
+var formTemplate = require('../../templates/form_template.hbs');
+var tagTemplate = require('../../templates/tags_item_template.hbs');
+var urlItemTemplate = require('../../templates/urls_item_template.hbs');
 
 var FormView = Backbone.View.extend({
   tagName: 'form'
@@ -15,19 +17,65 @@ var FormView = Backbone.View.extend({
     this.$el.html(renderedTemplate);
     return this;
   }
-  , addBookmark: function(){
+  , addBookmark: function(e){
+    e.preventDefault();
+    var $title = $('#title');
+    var $url = $('#url');
+    var $tags = $('#tags');
     this.collection.create({
-      url: $('#url').val()
-      , title: $('#title').val()
-      , tags: $('#tags').val()
-
+      url: $url.val()
+      , title: $title.val()
+      , tags: $tags.val()
     })
+    $url.val('');
+    $title.val('');
+    $tags.val('');
   }
+});
 
+var TagsListView = Backbone.View.extend({
+  tagName: 'ul'
+  , className: 'list-group'
+  , initialize: function(){
+    this.listenTo(this.collection, 'add', this.addTag)
+  }
+  , render: function(){
+    return this;
+  }
+  , addTag: function(bookmark){
+    var listItem = new TagsItemView({model: bookmark});
+    this.$el.append(listItem.render().el);
+  }
+});
+
+
+var TagsItemView = Backbone.View.extend({
+  tagName: 'li'
+  , className: 'list-group-item'
+  , template: tagTemplate
+  , render: function(){
+    var renderedTemplate = this.template(this.model.toJSON());
+    this.$el.html(renderedTemplate);
+    return this;
+  }
+});
+
+var URLListView = Backbone.View.extend({
+  className: 'well',
+  template: urlItemTemplate,
+  render: function(){
+    var renderedTemplate = this.template(this.model.toJSON());
+    this.$el.html(renderedTemplate);
+    return this;
+  }
 });
 
 module.exports = {
   FormView : FormView
+  , TagsListView : TagsListView
+  , TagsItemView : TagsItemView
+  , URLListView : URLListView
+
 }
 
 
