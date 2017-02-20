@@ -99,7 +99,7 @@ var PostItemView = Backbone.View.extend({
   , render: function(){
     var renderedTemplate = this.template(this.model.toJSON());
     this.$el.html(renderedTemplate);
-    this.$('.edit-form').hide();
+    this.$el.find('.edit-form').hide();
     return this;
   }
   , events: {
@@ -116,8 +116,8 @@ var PostItemView = Backbone.View.extend({
   , updatePost: function(e){
     e.preventDefault();
     this.model.set({
-      title: $('#edit-title').val()
-       , body: $('#edit-body').val()
+      title: this.$el.find('.edit-title').val()
+       , body: this.$el.find('.edit-body').val()
     });
     this.model.save();
   }
@@ -187,11 +187,11 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + " </h4>\n  <hr>\n  <span> "
     + alias4(((helper = (helper = helpers.body || (depth0 != null ? depth0.body : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"body","hash":{},"data":data}) : helper)))
-    + " </span>\n</div>\n<div>\n  <button class=\"edit-btn btn btn-warning\"> Edit </button>\n  <button class=\"delete-btn float-right btn btn-danger\"> Delete </button>\n</div>\n<br>\n<div>\n<form class=\"edit-form\" action=\"index.html\" method=\"post\">\n  <div class=\"form-group\">\n    <label for=\"title\">New Title</label>\n    <input type=\"text\" class=\"form-control\" id=\"edit-title\" value='"
+    + " </span>\n</div>\n<div>\n  <button class=\"edit-btn btn btn-warning\"> Edit </button>\n  <button class=\"delete-btn float-right btn btn-danger\"> Delete </button>\n</div>\n<br>\n<div>\n<form class=\"edit-form\" action=\"index.html\" method=\"post\">\n  <div class=\"form-group\">\n    <label for=\"title\">New Title</label>\n    <input type=\"text\" class=\"form-control edit-title\" value='"
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "'>\n    <!-- <textarea form=\"edit-title\">"
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "</textarea> -->\n  </div>\n  <div class=\"form-group\">\n    <label for=\"body\">New Body</label>\n    <input type=\"text\" class=\"form-control\" id=\"edit-body\" value=\" "
+    + "</textarea> -->\n  </div>\n  <div class=\"form-group\">\n    <label for=\"body\">New Body</label>\n    <input type=\"text\" class=\"form-control edit-body\" value=\" "
     + alias4(((helper = (helper = helpers.body || (depth0 != null ? depth0.body : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"body","hash":{},"data":data}) : helper)))
     + " \">\n  </div>\n\n  <button type=\"submit\" class=\"update-btn btn btn-default\">Update Post</button>\n\n</form>\n";
 },"useData":true});

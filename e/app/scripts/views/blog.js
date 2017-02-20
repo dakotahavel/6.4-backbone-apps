@@ -28,7 +28,7 @@ var PostItemView = Backbone.View.extend({
   , render: function(){
     var renderedTemplate = this.template(this.model.toJSON());
     this.$el.html(renderedTemplate);
-    this.$('.edit-form').hide();
+    this.$el.find('.edit-form').hide();
     return this;
   }
   , events: {
@@ -45,8 +45,8 @@ var PostItemView = Backbone.View.extend({
   , updatePost: function(e){
     e.preventDefault();
     this.model.set({
-      title: $('#edit-title').val()
-       , body: $('#edit-body').val()
+      title: this.$el.find('.edit-title').val()
+       , body: this.$el.find('.edit-body').val()
     });
     this.model.save();
   }
